@@ -1,0 +1,40 @@
+ <script>
+ 
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+      
+    });
+    
+    
+    function getUserInfo(){
+    
+     var userInfo = {};
+     
+     var languages = $('#languages').val(); 
+          
+     userInfo.languages = languages.join(', ' );
+     userInfo.name = document.getElementById("name").value;
+     userInfo.database = document.getElementById("database").value;  
+     
+     
+     google.script.run.onSubmitClick(userInfo);
+     
+     document.getElementById("name").value = "";
+     
+     var databaseReset = document.getElementById("database");
+     databaseReset.selectedIndex = 0; 
+     M.FormSelect.init(databaseReset);
+     
+     var langReset = document.getElementById("languages");
+     langReset.selectedIndex = null; 
+     M.FormSelect.init(langReset);
+     
+    }
+    
+    document.getElementById("btn").addEventListener("click", getUserInfo);
+    
+    
+ 
+    
+</script>
